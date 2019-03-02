@@ -128,3 +128,62 @@ while (NEXT_MARKS): #starting of while loop
                     print("\nYour", prompt, "attempts were invalid.\nBy default the marks assigned to final exam is", finalExam, "\n")
 
     print("\nThank You!\n")
+
+
+
+    #converting assignment marks into weighted marks
+
+    weightedAssignment1 = float(assignment1 * ( 20 /100 ))  #converting assignement 1 into weighted mark of 20%
+    weightedAssignment2 = float(assignment2 * ( 30 /100 ))  #converting assignement 2 into weighted mark of 30%
+    weightedFinalExam = float(finalExam * ( 50 /100 ))      #converting final exam into weighted mark of 50%
+    totalWeightedAssignment = float(weightedAssignment1 + weightedAssignment2)  #total of weighted assignment 1 and assignment 2
+    totalWeightedMark = float(totalWeightedAssignment + weightedFinalExam)      #total weighted mark by calculating all assignements and exam
+
+    #print out weighted marks for the assignments and exam
+    print ("Weighted mark for Assignment 1:" , format(weightedAssignment1, '.1f'))  #Display the result with 1 single precison after the decimal.
+    print ("Weighted mark for Assignment 2:" , format(weightedAssignment2, '.1f'))
+    print ("Total weighted mark of the assignments:", format(totalWeightedAssignment, '.1f'))
+    print ("\nWeighted mark for the Final Exam:" , format(weightedFinalExam, '.1f'))
+    print ("Total weighted mark for the subject:", format(totalWeightedMark, '.1f'),"\n") #\n indicates new line
+
+    #condition set according to the table
+
+    #if the marks is below 50 bonus mark is assigned 0
+    if (totalWeightedMark <= 50):
+        bonusMark = 0 
+
+    #if the marks is less than or equal to 70 then 10% of every marks above 50 is assigned
+    elif(totalWeightedMark <=70):
+        bonusMark = (10/100) * (totalWeightedMark % 50)
+        
+
+    #if the marks is less than or equal to 90 then 2 marks + 15% of every mark above 70 is addd
+    elif(totalWeightedMark <=90):
+        bonusMark = 2 + (15/100) * (totalWeightedMark % 70)
+
+    #if marks is less than or equal to 100 then 5 amrks + 20% of every marks above 90 is added.
+    elif(totalWeightedMark <=100):
+        bonusMark = 5 + (20/100) * (totalWeightedMark % 90)
+
+    print("Bonus mark:", format(bonusMark, '.1f'))   # Display user with bonus marks
+
+
+    #total mark with bonus is added
+    totalMarkWithBonus = bonusMark + totalWeightedMark
+
+    #if the marks with bonus exceeds 100, then grand total mark is set to 100.
+    if (totalMarkWithBonus > 100):
+        totalMarkWithBonus = 100
+    print("Total mark with bonus:", totalMarkWithBonus)
+
+    #asking for user input to ask if the user wants to input the marks again
+    userResponse = input("\nDo you want to enter marks for another student (Y/N)?")
+
+    #if the user presses n, then the program ends
+    if (userResponse == "n"):
+        NEXT_MARKS = False
+
+
+print("\nGoodbye.")   #Displays goodbye message to the user.
+
+
